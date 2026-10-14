@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uma Surpresa Especial Para Você 📸💖</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Biblioteca de geração de QR Code de alta qualidade -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #feada6 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animação de Corações e Rosas no Fundo */
+        .particle {
+            position: fixed;
+            top: -10vh;
+            font-size: 22px;
+            user-select: none;
+            pointer-events: none;
+            animation: fall linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(115vh) rotate(360deg);
+            }
+        }
+
+        /* Container Principal */
+        .container {
+            max-width: 500px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 40px 25px;
+            box-shadow: 0 25px 50px rgba(216, 58, 86, 0.3);
+            border: 3px solid #ffb6c1;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .title {
+            font-family: 'Great Vibes', cursive;
+            color: #d83a56;
+            font-size: 3.2rem;
+            margin-bottom: 5px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.08);
+        }
+
+        .subtitle {
+            background: linear-gradient(45deg, #ffe6e8, #ffd1d6);
+            color: #d83a56;
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 10px rgba(216, 58, 86, 0.1);
+        }
+
+        /* Moldura Bonita do QR Code */
+        .qrcode-card {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 20px;
+            display: inline-block;
+            box-shadow: 0 10px 25px rgba(216, 58, 86, 0.15);
+            border: 2px dashed #ff416c;
+            margin: 15px 0;
+            position: relative;
+        }
+
+        .qrcode-card::before {
+            content: '💖';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #fff;
+            padding: 0 8px;
+            font-size: 16px;
+        }
+
+        #qrcode img {
+            margin: 0 auto;
+            border-radius: 10px;
+        }
+
+        .instructions {
+            margin-top: 20px;
+            color: #4a4a4a;
+            font-size: 0.98rem;
+            line-height: 1.6;
+            padding: 0 10px;
+        }
+
+        .highlight-box {
+            margin-top: 25px;
+            background: linear-gradient(135deg, #fff0f3, #ffe6e8);
+            border-radius: 15px;
+            padding: 15px;
+            font-size: 0.9rem;
+            color: #d83a56;
+            font-weight: 600;
+            border: 1px solid #ffb6c1;
+        }
+
+        .footer-name {
+            margin-top: 20px;
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.8rem;
+            color: #d83a56;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="title">Abra Sua Surpresa</h1>
+        <div class="subtitle">✨ Aponte a câmera do celular abaixo ✨</div>
+
+        <div class="qrcode-card">
+            <!-- Div onde o QR Code é gerado automaticamente -->
+            <div id="qrcode"></div>
+        </div>
+
+        <div class="instructions">
+            <p>📱 <strong>Como ler:</strong> Abra a câmera do seu celular, feche o foco no código acima e toque no link que aparecer na tela!</p>
+        </div>
+
+        <div class="highlight-box">
+            💌 Uma carta cheia de amor e emoção está esperando por você do outro lado... 🌹✨
+        </div>
+
+        <div class="footer-name">
+            Para: Ana Beatriz 💖<br>
+            De: Emanuel Felipe ✍️❤️
+        </div>
+    </div>
+
+    <script>
+        // Link da sua carta já cadastrado
+        const linkCarta = "https://emanuelsouza2a.github.io/PARA-O-MEU.AMOR-Ana.Beatriz./";
+
+        // Gerador Automático de QR Code
+        new QRCode(document.getElementById("qrcode"), {
+            text: linkCarta,
+            width: 220,
+            height: 220,
+            colorDark : "#d83a56",  // Cor romântica do QR Code
+            colorLight : "#ffffff",
+            correctLevel : QRCode.CorrectLevel.H
+        });
+
+        // Chuva de Corações e Pétalas
+        function criarParticulas() {
+            const simbolos = ['💖', '🌹', '✨', '🌸', '💕', '🥰', '❤️'];
+            const particula = document.createElement('div');
+            particula.classList.add('particle');
+            particula.innerHTML = simbolos[Math.floor(Math.random() * simbolos.length)];
+            particula.style.left = Math.random() * 100 + 'vw';
+            particula.style.animationDuration = (Math.random() * 3 + 3.5) + 's';
+            particula.style.fontSize = (Math.random() * 12 + 18) + 'px';
+            document.body.appendChild(particula);
+
+            setTimeout(() => {
+                particula.remove();
+            }, 6500);
+        }
+
+        setInterval(criarParticulas, 220);
+    </script>
+</body>
+</html>
